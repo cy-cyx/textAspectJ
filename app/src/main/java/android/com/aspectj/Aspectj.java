@@ -38,4 +38,26 @@ public class Aspectj {
     public void activityOnCreateAfter(JoinPoint joinPoint) {
         Log.d("xx", "activityOnCreateAfter: " + joinPoint.getThis());
     }
+
+    // 区分call和execution
+
+    @Pointcut("call(* android.com.aspectj.TextAspectjCall.call())")
+    public void callPointcut() {
+
+    }
+
+    @Before("callPointcut()")
+    public void call(JoinPoint joinPoint) {
+        Log.d("xx", "callBefore（call）: " + joinPoint.getThis());
+    }
+
+    @Pointcut("execution(* android.com.aspectj.TextAspectjCall.call())")
+    public void callPointcut1() {
+
+    }
+
+    @Before("callPointcut1()")
+    public void call1(JoinPoint joinPoint) {
+        Log.d("xx", "callBefore（execution）: " + joinPoint.getThis());
+    }
 }
