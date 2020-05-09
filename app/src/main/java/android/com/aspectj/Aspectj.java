@@ -17,7 +17,9 @@ public class Aspectj {
     //    @Pointcut("execution(* android.com.aspectj.MainActivity.onCreate(..))")
     //    @Pointcut("execution(* *..MainActivity.onCreate(..))")
     //    @Pointcut("execution(* *.*.*.MainActivity.onCreate(..))")
-    @Pointcut("execution(* android.com.aspectj.BaseActivity+.onCreate(..))")
+    //    @Pointcut("execution(* android.com.aspectj.BaseActivity+.onCreate(..))")
+    //    @Pointcut("execution(* android.com.aspectj.BaseActivity+.onCreate(..)) && !within(android.com.aspectj.MainActivity)")
+    @Pointcut("execution(* android.com.aspectj.BaseActivity+.onCreate(..)) && within(android.com.aspectj.MainActivity)")
     public void activityOnCreatePointcut() {
 
     }
@@ -41,7 +43,9 @@ public class Aspectj {
 
     // 区分call和execution
 
-    @Pointcut("call(* android.com.aspectj.TextAspectjCall.call())")
+    //    @Pointcut("call(* android.com.aspectj.TextAspectjCall.call())")
+    //    @Pointcut("call(* android.com.aspectj.TextAspectjCall.call()) && !withincode(* android.com.aspectj.MainActivity.onCreate(..))")
+    @Pointcut("call(* android.com.aspectj.TextAspectjCall.call()) && withincode(* android.com.aspectj.MainActivity.onCreate(..))")
     public void callPointcut() {
 
     }

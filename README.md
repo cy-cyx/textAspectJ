@@ -48,3 +48,24 @@ public class TextAspectjCall {
     }
 }
 ```
+
+### within 和 whitincode
+
+#### whitin 指定某个类 配合execution 使用
+
+```
+@Pointcut("execution(* android.com.aspectj.BaseActivity+.onCreate(..)) && within(android.com.aspectj.MainActivity)")
+```
+
+在所有继承BaseActivity中指定MainActivity，如果想排除即用 !(备注：可能该库仅支持&& 不支持||)
+
+```
+@Pointcut("execution(* android.com.aspectj.BaseActivity+.onCreate(..)) && !within(android.com.aspectj.MainActivity)")
+```
+
+#### whitincode 指定某个方法不插入 配合call 使用
+
+```
+@Pointcut("call(* android.com.aspectj.TextAspectjCall.call()) && withincode(* android.com.aspectj.MainActivity.onCreate(..))")
+```
+
